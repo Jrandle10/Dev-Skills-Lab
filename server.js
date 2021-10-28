@@ -19,6 +19,7 @@ app.set(
 )
 app.set('view engine', 'ejs')
 
+
 // middleware
 app.use(logger('dev'))
 app.use(express.json())
@@ -31,6 +32,12 @@ app.use(
 )
 
 // mounted routers
+app.use(function(req, res, next) {
+  console.log('Hello Ja!')
+  req.time = new Date().toLocaleTimeString()
+  next()
+})
+
 app.use('/', indexRouter)
 app.use('/skills', skillsRouter)
 
